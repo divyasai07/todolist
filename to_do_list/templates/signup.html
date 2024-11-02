@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>register</title>
+    <link rel="stylesheet" href="{% static 'style1.css' %} " />
+  </head>
+  <body>
+    <div class="container">
+      <div class="register-box">
+        <form method="post">
+          {% csrf_token %}
+          <div class="header">
+            <p>Sign Up</p>
+          </div>
+          <div class="input-group">
+            <input
+              type="text"
+              class="input-field"
+              name="username"
+              id="username"
+              required
+            />
+            <label for="username">Username</label>
+          </div>
+
+          <div class="input-group">
+            <input
+              type="text"
+              class="input-field"
+              name="email"
+              id="email"
+              required
+            />
+            <label for="email">Email id</label>
+          </div>
+
+          <div class="input-group">
+            <input
+              type="password"
+              class="input-field"
+              name="password"
+              id="password"
+              required
+            />
+            <label for="password">Password</label>
+          </div>
+
+          <div class="input-group">
+            <input
+              type="password"
+              class="input-field"
+              name="confirmpassword"
+              id="confirmpassword"
+              required
+            />
+            <label for="confirmpassword">Confirm Password</label>
+          </div>
+          <div class="input-group">
+            <button class="input-submit">Sign Up</button>
+          </div>
+        </form>
+        <div class="login">
+          <p>Already have an account? <a href="login" class="span">Login</a></p>
+        </div>
+        <div class="message">
+          {% for message in messages %}
+          <h3>{{message}}</h3>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

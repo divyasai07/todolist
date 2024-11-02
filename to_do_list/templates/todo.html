@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>todolist</title>
+    <link rel="stylesheet" href="{% static 'todo.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <form method="post">
+          {% csrf_token %}
+          <div class="header">
+            <p>Hello {{user.username}}</p>
+            <button class="input-submit">Add Task</button>
+            <a href="logout"><i class="fa fa-sign-out"></i> </a>
+          </div>
+        </form>
+        {% spaceless %} {% for todo in res %}
+        <div class="group">
+          <div class="grid-container">
+            {% if todo.complete %}
+            <div class="circle1"></div>
+            {% else %}
+            <div class="circle"></div>
+            {% endif %}
+            <a class="grid" href="#">{{todo.title}}</a>
+            <div class="action-buttons">
+              <a href="{% url 'edittask' todo.id %}">Edit</a>
+              <a href="{% url 'deletetask' todo.id %}">Delete</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %} {% endspaceless %}
+      </div>
+    </div>
+  </body>
+</html>
